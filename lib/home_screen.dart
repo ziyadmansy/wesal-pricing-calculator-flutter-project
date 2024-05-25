@@ -19,11 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
   double maintenance = 0;
   double installment = 0;
 
-  InstallmentEnum selectedInstallmentEnum = InstallmentEnum.ten;
+  InstallmentEnum selectedInstallmentEnum = InstallmentEnum.five;
   List<InstallmentEnum> installmentEnums = [
+    InstallmentEnum.five,
+    InstallmentEnum.sevenAndHalf,
     InstallmentEnum.ten,
-    InstallmentEnum.fifteen,
-    InstallmentEnum.twenty,
   ];
 
   void resetValues() {
@@ -47,19 +47,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void calcResults() {
     maintenance = totalPrice * 7 / 100;
 
-    if (selectedInstallmentEnum == InstallmentEnum.ten) {
-      // 10%
-      downPayment = totalPrice * 10 / 100;
+    if (selectedInstallmentEnum == InstallmentEnum.five) {
+      // 5%
+      downPayment = totalPrice * 5 / 100;
       final restPrice = totalPrice - downPayment;
       installment = restPrice / 8 / 12;
-    } else if (selectedInstallmentEnum == InstallmentEnum.fifteen) {
-      // 15%
-      downPayment = totalPrice * 15 / 100;
+    } else if (selectedInstallmentEnum == InstallmentEnum.sevenAndHalf) {
+      // 7.5%
+      downPayment = totalPrice * 7.5 / 100;
       final restPrice = totalPrice - downPayment;
       installment = restPrice / 9 / 12;
-    } else if (selectedInstallmentEnum == InstallmentEnum.twenty) {
-      // 20%
-      downPayment = totalPrice * 20 / 100;
+    } else if (selectedInstallmentEnum == InstallmentEnum.ten) {
+      // 10%
+      downPayment = totalPrice * 10 / 100;
       final restPrice = totalPrice - downPayment;
       installment = restPrice / 10 / 12;
     }
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
               RadioListTile<InstallmentEnum>(
                 value: installmentEnums[0],
                 groupValue: selectedInstallmentEnum,
-                title: const Text('10%'),
+                title: const Text('5%'),
                 onChanged: (value) {
                   setState(() {
                     selectedInstallmentEnum = value!;
@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
               RadioListTile<InstallmentEnum>(
                 value: installmentEnums[1],
                 groupValue: selectedInstallmentEnum,
-                title: const Text('15%'),
+                title: const Text('7.5%'),
                 onChanged: (value) {
                   setState(() {
                     selectedInstallmentEnum = value!;
@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
               RadioListTile<InstallmentEnum>(
                 value: installmentEnums[2],
                 groupValue: selectedInstallmentEnum,
-                title: const Text('20%'),
+                title: const Text('10%'),
                 onChanged: (value) {
                   setState(() {
                     selectedInstallmentEnum = value!;
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ListTile(
                 title: const Text('المقدم'),
                 subtitle: Text(
-                  '${selectedInstallmentEnum == InstallmentEnum.ten ? '10%' : selectedInstallmentEnum == InstallmentEnum.fifteen ? '15%' : '20%'} من قيمة الوحدة',
+                  '${selectedInstallmentEnum == InstallmentEnum.five ? '5%' : selectedInstallmentEnum == InstallmentEnum.sevenAndHalf ? '7.5%' : '10%'} من قيمة الوحدة',
                   style: const TextStyle(
                     color: Colors.grey,
                   ),

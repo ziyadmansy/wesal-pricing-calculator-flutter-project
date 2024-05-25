@@ -1,5 +1,5 @@
 enum InstallmentEnum {
+  five,
+  sevenAndHalf,
   ten,
-  fifteen,
-  twenty,
 }
